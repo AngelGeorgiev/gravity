@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gravity Info</title>
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDceD_qd4LDPcEcEI57jnzu2VhErU_q6Bw&sensor=false">
+            
+        </script>
+
+            <script>
+                var map;
+                var myCenter=new google.maps.LatLng(42.657752,23.355007);
+
+                    function initialize()
+                        {
+                            var mapProp = {
+                              center:myCenter,
+                              zoom:5,
+                              mapTypeId:google.maps.MapTypeId.ROADMAP
+                              };
+
+                          map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+                          google.maps.event.addListener(map, 'click', function(event) {
+                            placeMarker(event.latLng);
+                          });
+                        }
+
+                        function placeMarker(location) {
+                            
+                            var marker = new google.maps.Marker({
+                              position: location,
+                              map: map,
+                              draggable:true,
+                              animation: google.maps.Animation.DROP,
+                              });
+                            
+                            
+                        
+                            var gravity = location.lat()+location.lng();
+                            var infowindow = new google.maps.InfoWindow({
+                              content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng() + 
+                                      '<br>Gravity Info: ' + gravity
+                              
+                            });
+                             
+                            infowindow.open(map,marker);
+                          
+                            var deleteMarker = new 
+                            
+                            google.maps.event.addListener(marker, 'rightclick', function() {
+                            marker.setMap(null);
+                            });
+                            
+                            
+
+
+
+ 
+
+                        }
+
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+
+<body>
+   
+<div id="googleMap" style="width:700px;height:500px;"></div>
+ 
+</body>
+</html>
