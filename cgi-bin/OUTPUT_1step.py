@@ -1,10 +1,6 @@
-import cgitb
-cgitb.enable()
-
 def output():
-    form = cgi.FieldStorage()
-    latitude = float(form.getvalue("latitude"))
-    longitude = float(form.getvalue("longitude"))
+    latitude = float(raw_input('Give me latitude: '))
+    longitude = float(raw_input('Give me longitude: '))
     latitude = latitude // 1
     longitude = longitude // 1
     f = open('OUTPUT_1step.DAT', 'r')
