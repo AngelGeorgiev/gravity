@@ -7,7 +7,7 @@
         </script>
         <script>
             var map;
-            var myCenter=new google.maps.LatLng(42.657752,23.355007);
+            var myCenter = new google.maps.LatLng(42.657752,23.355007);
 
             function initialize()
                 {
@@ -31,6 +31,11 @@
                       animation: google.maps.Animation.DROP
                       });
                     var gravity = location.lat() + location.lng();
+                    var latDiv = document.getElementById("latitude");
+                    var lngDiv = document.getElementById("longitude");
+                    var grvDiv = document.getElementById("gravity");
+                    latDiv.value = location.lat();
+                    lngDiv.value = location.lng();
                     var infowindow = new google.maps.InfoWindow({
                       content: 'Latitude: ' + location.lat() +
                                '<br>Longitude: ' + location.lng() + 
@@ -52,7 +57,13 @@
 
 <body>
    
-<div id="googleMap" style="width:700px;height:500px;"></div>
+<div id="googleMap" style="width:700px;height:500px;"></div><br>
+<form action="/cgi-bin/OUTPUT_1step.cgi" method="POST">
+    <div>Latitude: </div><input type="text" name="latitude" id="latitude"><br>
+    <div>Longitude: </div><input type="text" name="longitude"  id="longitude"><br>
+    <div>Gravity info: </div><input type="text" name="gravity" id="gravity"><br>
+    <input type="submit">
+</form>
  
 </body>
 </html>
